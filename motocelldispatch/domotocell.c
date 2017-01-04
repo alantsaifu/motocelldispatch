@@ -49,7 +49,7 @@ void ptmotoldcell_main(void) {
                     motor_chk_sta_msg_handler();
                     break;         
                 default:
-                    printf("%s\n", "CAM Received invalid msg.");
+                    printf("%s\n", "motocell Received invalid msg");
                     break;         
             }
         }
