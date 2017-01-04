@@ -19,8 +19,7 @@ void domotocell_init(void) {
                     O_CREAT | O_RDWR | O_NONBLOCK, \
                     0666, \
                     &motocell_mq_attr);
-
-    //ASSERT(cam_mq != -1);
+    
     motocell_state.state_id = MOTOCELL_STATE_NOT_READY;
 }
 
