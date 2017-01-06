@@ -4,7 +4,7 @@ SRC_FILES=domotocell_inf.c \
           main.c 
 
 app: $(SRC_FILES)
-	gcc $(SRC_FILES) -lpthread -lrt -o motocell.o
+	gcc -o motocell.o $(SRC_FILES) -lpthread -lrt
 
 all: app
 

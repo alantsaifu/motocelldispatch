@@ -10,14 +10,28 @@ void thread_handler_close(void) {
 
     mq_close(motocell_mq);
     mq_unlink(MOTOCELL_MQ_NAME);
+
+    mq_close(motorising_mq);
+    mq_unlink(MOTORISING_MQ_NAME);
+
+    mq_close(motorotation_mq);
+    mq_unlink(MOTOROTATION_MQ_NAME);
 }
 
-int main(void) {
+int main(void) {    
     //pthread_attr_t attr;
     int status; 
 
     recvdispatch_init();
     domotocell_init();
+
+    mclmsgcnt.gmotocellmsg = 0;
+    mclmsgcnt.gmotorisingmsg = 0;
+    mclmsgcnt.gmotorotationmsg = 0;
+
+    pthread_mutex_init(&mut_motocell,NULL);
+    pthread_mutex_init(&mut_motorisingmsg,NULL);
+    pthread_mutex_init(&mut_motorotationmsg,NULL);
 
     //pthread_attr_init(&attr);
     //pthread_attr_setstacksize(&attr, 1024*1024);
@@ -34,9 +48,12 @@ int main(void) {
         printf("Failed to create ptdomotocell thread with status = %d\n", status);
     }
 
+    //thread_handler_close();
+#if 0
     pthread_join(ptrecvdispatch, NULL);
     pthread_join(ptdomotocell, NULL);
-
+#endif
+    while(1);
     return 0;
 }
 
